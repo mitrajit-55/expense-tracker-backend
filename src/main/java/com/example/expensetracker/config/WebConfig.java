@@ -1,4 +1,4 @@
-package com.expensetracker.config; // <-- Change this to your actual package
+package com.expensetracker.config; 
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,15 +13,13 @@ public class WebConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**") // No backslash before stars!
-                        // Use your actual deployed frontend URL
-                        .allowedOrigins("https://expense-tracker-frontend-vlul.onrender.com")
+                registry.addMapping("/**")  // ✅ Correct wildcard
+                        .allowedOrigins("https://expense-tracker-frontend-vlul.onrender.com") // ✅ Exact deployed frontend URL
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                        .allowedHeaders("*") // No escaping star
-                        .allowCredentials(true) // Allow cookies/auth if needed
-                        .maxAge(3600); // Cache preflight for 1 hour
+                        .allowedHeaders("*")
+                        .allowCredentials(true)  
+                        .maxAge(3600);           
             }
         };
     }
 }
-
